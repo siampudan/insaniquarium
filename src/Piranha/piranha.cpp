@@ -1,11 +1,16 @@
-#include "piranha.h"
-#include "animal.h"
+#include "./piranha.h"
+#include "../Point/point.h"
+#include "../Animal/animal.h"
 #include <math.h>
+#include <iostream>
 
 Piranha::Piranha(){
-    Point init(0,0);
+    Point init(100,100);
     this->location = init;
     this->growth = 1;
+    std::string fileName = "../assets/Animal/PiranhaNormal/piranha.png";
+    this->texture = new char(fileName.length() + 1);
+    this->texture = strcpy(this->texture, "../assets/Animal/PiranhaNormal/piranha.png");
 };
 
 Piranha::Piranha(Point init){
@@ -23,6 +28,10 @@ Point Piranha::getLocation(){
     return this->location;
 }
 
+char *Piranha::getTexture(){
+    return this->texture;
+}
+
 void Piranha::move(Point dest, double v){
     Point diff = this->location.getDifference(dest);
     double dir = atan2(diff.getY(), diff.getX());
@@ -33,3 +42,5 @@ void Piranha::move(Point dest, double v){
     Point newLocation(newX, newY);
     this->location = newLocation;
 }
+
+void Piranha::eat(){}

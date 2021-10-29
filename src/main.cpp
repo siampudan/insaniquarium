@@ -1,33 +1,25 @@
 #include <iostream>
-using namespace std;
+#include "./Piranha/piranha.h"
+#include "../libs/graphic/app.h"
+#include "./Animal/animal.h"
 
-class Animal{
-    public:
-        virtual void move() = 0;
-};
 
-class Fish : public Animal{
-    public:
-        Fish(){
-            count++;
-        }
-        ~Fish(){}
-        void move(){
-            cout << "Hi. I'm move" << endl;
-        }
-        static int count;
-};
-
-class Guppy : public Fish {
-    public:
-        void move(){
-            cout << "Hi. I'm move too" << endl;
-        }
-};
-
-int Fish::count;
 int main(){
-    Fish* c = new Fish();
-    Fish* b = new Fish();
-    cout << Fish::count << endl;
+    App app;
+    app.initWindow();
+    
+    app.prepareScene("../assets/aquarium1.jpg");
+
+    
+    Piranha* piranha = new Piranha();
+
+    while(true){
+        app.doInput();        
+        app.blit(piranha);
+        app.presentScene();
+        SDL_Delay(16);
+    }
+
+
+    return 0;
 }

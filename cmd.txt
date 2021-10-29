@@ -1,0 +1,1 @@
+g++ main.cpp ./Piranha/piranha.cpp ./Point/point.cpp ../libs/graphic/app.cpp  -lSDL2_image -g `sdl2-config --cflags --libs` -o a.out
